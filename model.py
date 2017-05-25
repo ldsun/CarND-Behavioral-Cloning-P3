@@ -1,6 +1,9 @@
 import csv
 import cv2
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 # Load the data.
 csv_path = '../data_joystick/driving_log.csv'
@@ -23,6 +26,11 @@ for line in lines:
     images.append(np.asarray(image))
     measurement = float(line[3])
     measurements.append(measurement)
+
+plt.hist(measurements)
+plt.savefig('measuremts.png')
+
+
 
 X_train = np.array(images)
 y_train = np.array(measurements)
